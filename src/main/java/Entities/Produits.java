@@ -13,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -52,7 +51,10 @@ public class Produits {
 	private double sel100g;
 	
 	@Embedded
-	private String nutritionGradeFr;
+	private ProduitInfoComplementaire ProduitInfoComplementaire;
+	
+	@Embedded
+	private NutritionGradeFr nutritionGradeFr;
 
 	
 	///////// RELATION /////////////
@@ -189,12 +191,11 @@ public class Produits {
 		this.ingredients = ingredients;
 	}
 
-
-	public String getNutritionGradeFr() {
+	public NutritionGradeFr getNutritionGradeFr() {
 		return nutritionGradeFr;
 	}
 
-	public void setNutritionGradeFr(String nutritionGradeFr) {
+	public void setNutritionGradeFr(NutritionGradeFr nutritionGradeFr) {
 		this.nutritionGradeFr = nutritionGradeFr;
 	}
 
@@ -202,9 +203,10 @@ public class Produits {
 	public String toString() {
 		return "Produits [id=" + id + ", nom=" + nom + ", energie100g=" + energie100g + ", graisse100g=" + graisse100g
 				+ ", sucres100g=" + sucres100g + ", fibres100g=" + fibres100g + ", proteines100g=" + proteines100g
-				+ ", sel100g=" + sel100g + ", categorie=" + categorie + ", marque=" + marque + ", ingredients="
-				+ ingredients + "]";
+				+ ", sel100g=" + sel100g + ", nutritionGradeFr=" + nutritionGradeFr + ", categorie=" + categorie
+				+ ", marque=" + marque + ", ingredients=" + ingredients + "]";
 	}
+
 
 	
 	

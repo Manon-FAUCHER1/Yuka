@@ -52,12 +52,12 @@ public class IntegrationOpenFoodFacts {
 				System.out.println(cpt);
 
 				/////////// SEPARATION DES COLONNES ///////////
-				String[] colonnes = ligne.split(";", -1);
+				String[] colonnes = ligne.split("\\|", -1);
 
 								
 				CategoriesDao.insert(em , colonnes);
 				MarqueDao.insert(em, colonnes);
-				ProduitDao.insert(em, colonnes);
+//				ProduitDao.insert(em, colonnes);
 				
 		
 //				produit.setCategorie(ca);;

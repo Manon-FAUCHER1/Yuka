@@ -50,7 +50,7 @@ public class MarqueDao {
 			}
 			
 		} else {
-			throw new ExceptionMessage("Il y a un probleme dans l'insertion d'une marque !");
+			throw new ExceptionMessage("Le nom de la marque est trop grande.");
 		}
 	}
 

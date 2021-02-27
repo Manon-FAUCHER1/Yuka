@@ -49,7 +49,7 @@ public class CategoriesDao {
 			}		
 			
 		} else {
-			throw new ExceptionMessage("Il y a un probleme dans l'insertion d'une catégorie !");
+			throw new ExceptionMessage("Le nom de la catégorie est trop grande.");
 		}
 		
 		

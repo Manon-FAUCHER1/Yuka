@@ -37,13 +37,12 @@ public class IngredientDao {
 				// Suppression des _
 				ingredient = ingredient.replace("_", " ");
 				ingredient = ingredient.trim().replace("\\s{2,}", " ").toLowerCase();
-				System.err.println(ingredient);
 				
 				// Première lettre en Majuscule 
 				char[] char_ingredient = ingredient.toCharArray();
 				char_ingredient[0] = Character.toUpperCase(char_ingredient[0]);
 				ingredient = new String(char_ingredient);
-			
+				
 				
 				Ingredients ingred = null;
 

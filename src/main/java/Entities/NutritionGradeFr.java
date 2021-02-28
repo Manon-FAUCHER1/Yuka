@@ -12,7 +12,7 @@ import javax.persistence.Embeddable;
  * @author manon
  *
  */
-@Embeddable
+//@Embeddable
 public enum NutritionGradeFr {
 	
 	a("a"),

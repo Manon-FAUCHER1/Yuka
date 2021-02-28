@@ -11,7 +11,7 @@ public class DoubleUtils {
 		if (valeur.isEmpty()) {
 			return 0.0;
 		} else if (!NumberUtils.isDigits(valeur) || valeur.length() > 255){
-			throw new ExceptionMessage("La valeur n'est pas correcte.");
+			return 0.0;
 		} else {
 			return Double.parseDouble(valeur);
 		}

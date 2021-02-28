@@ -5,6 +5,7 @@ package DAO;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
 import Entities.Categories;
 import Entities.Marques;
@@ -22,8 +23,12 @@ import Utils.VerifUtil;
 public class ProduitDao {
 
 	/**
-	 * @param args
-	 * @throws ExceptionMessage 
+	 * @param em
+	 * @param colonnes
+	 * @param categorie
+	 * @param marque
+	 * @return
+	 * @throws ExceptionMessage
 	 */
 	public static Produits insert(EntityManager em, String[] colonnes, Categories categorie, Marques marque) throws ExceptionMessage {
 		EntityTransaction transaction = em.getTransaction();
@@ -33,31 +38,25 @@ public class ProduitDao {
 		
 		String nomProduit = VerifUtil.verifString(colonnes[2]);
 		produit.setNom(nomProduit);
-
 		Double energie100g = DoubleUtils.parse(colonnes[5]);	
 		produit.setEnergie100g(energie100g);
-		
 		Double graisse100g = DoubleUtils.parse(colonnes[6]);	
 		produit.setGraisse100g(graisse100g);
-		
 		Double sucres100g = DoubleUtils.parse(colonnes[7]);		
 		produit.setSucres100g(sucres100g);
-		
 		Double fibres100g = DoubleUtils.parse(colonnes[8]);	
 		produit.setFibres100g(fibres100g);
-		
 		Double proteines100g = DoubleUtils.parse(colonnes[9]);
 		produit.setProteines100g(proteines100g);
-		
 		Double sel100g = DoubleUtils.parse(colonnes[10]);		 
 		produit.setSel100g(sel100g);
 		
 		
-		String nutritionGrade = colonnes[3];
-		if (NutritionGradeFr.contains(nutritionGrade)) {
-			NutritionGradeFr nutritionGradeFr = NutritionGradeFr.valueOf(nutritionGrade);
-			produit.setNutritionGradeFr(nutritionGradeFr);
-		}
+//		String nutritionGrade = colonnes[3];
+//		if (NutritionGradeFr.contains(nutritionGrade)) {
+//			NutritionGradeFr nutritionGradeFr = NutritionGradeFr.valueOf(nutritionGrade);
+//			produit.setNutritionGradeFr(nutritionGradeFr);
+//		}
 		
 		
 		ProduitInfoComplementaire produitInfoComplementaire = new ProduitInfoComplementaire();

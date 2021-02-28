@@ -16,52 +16,52 @@ public class ProduitInfoComplementaire {
 	@Column(name = "vit_A_100g", nullable = true)
 	private String vitA100g;
 	
-	@Column(name = "vitD100g", nullable = true)
+	@Column(name = "vit_D_100g", nullable = true)
 	private String vitD100g;
 	
-	@Column(name = "vitE100g", nullable = true)
+	@Column(name = "vit_E_100g", nullable = true)
 	private String vitE100g;
 	
-	@Column(name = "vitK100g", nullable = true)
+	@Column(name = "vit_K_100g", nullable = true)
 	private String vitK100g;
 	
 	@Column(name = "vitC100g", nullable = true)
 	private String vitC100g;
 	
-	@Column(name = "vitB1100g", nullable = true)
+	@Column(name = "vit_B_1100g", nullable = true)
 	private String vitB1100g;
 	
-	@Column(name = "vitB2100g", nullable = true)
+	@Column(name = "vit_B_2100g", nullable = true)
 	private String vitB2100g;
 	
-	@Column(name = "vitPP100g", nullable = true)
+	@Column(name = "vit_PP_100g", nullable = true)
 	private String vitPP100g;
 	
-	@Column(name = "vitB6100g", nullable = true)
+	@Column(name = "vit_B_6100g", nullable = true)
 	private String vitB6100g;
 	
-	@Column(name = "vitB9100g", nullable = true)
+	@Column(name = "vit_B_9100g", nullable = true)
 	private String vitB9100g;
 	
-	@Column(name = "vitB12100g", nullable = true)
+	@Column(name = "vit_B_12100g", nullable = true)
 	private String vitB12100g;
 	
-	@Column(name = "calcium100g", nullable = true)
+	@Column(name = "calcium_100g", nullable = true)
 	private String calcium100g;
 	
-	@Column(name = "magnesium100g", nullable = true)
+	@Column(name = "magnesium_100g", nullable = true)
 	private String magnesium100g;
 	
-	@Column(name = "iron100g", nullable = true)
+	@Column(name = "iron_100g", nullable = true)
 	private String iron100g;
 	
-	@Column(name = "fer100g", nullable = true)
+	@Column(name = "fer_100g", nullable = true)
 	private String fer100g;
 	
-	@Column(name = "betaCarotene100g", nullable = true)
+	@Column(name = "betaCarotene_100g", nullable = true)
 	private String betaCarotene100g;
 
-	@Column(name = "presenceHuilePalme", nullable = true)
+	@Column(name = "presence_Huile_De_Palme", nullable = true)
 	private String presenceHuilePalme;
 
 	/**

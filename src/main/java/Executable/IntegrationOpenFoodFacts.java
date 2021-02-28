@@ -63,14 +63,12 @@ public class IntegrationOpenFoodFacts {
 				/////////// SEPARATION DES COLONNES ///////////
 				String[] colonnes = ligne.split("\\|", -1);
 
-								
-				Categories categorie = CategoriesDao.insert(em , colonnes);
+				Categories categorie = CategoriesDao.insert(em, colonnes);
 				Marques marque = MarqueDao.insert(em, colonnes);
 				Produits produits = ProduitDao.insert(em, colonnes, categorie, marque);
-				Ingredients ingredient = IngredientDao.insert(em, colonnes, produits);
+//				Ingredients ingredient = IngredientDao.insert(em, colonnes, produits);
 				Allergenes allergene = AllergeneDao.insert(em, colonnes, produits);
 				Additifs additif = AdditifDao.insert(em, colonnes, produits);
-
 
 				cpt++;
 			}

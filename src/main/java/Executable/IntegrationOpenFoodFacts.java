@@ -13,9 +13,18 @@ import javax.persistence.Persistence;
 
 import org.apache.commons.io.FileUtils;
 
+import DAO.AdditifDao;
+import DAO.AllergeneDao;
 import DAO.CategoriesDao;
+import DAO.IngredientDao;
 import DAO.MarqueDao;
 import DAO.ProduitDao;
+import Entities.Additifs;
+import Entities.Allergenes;
+import Entities.Categories;
+import Entities.Ingredients;
+import Entities.Marques;
+import Entities.Produits;
 
 /**
  * @author manon
@@ -55,52 +64,19 @@ public class IntegrationOpenFoodFacts {
 				String[] colonnes = ligne.split("\\|", -1);
 
 								
-				CategoriesDao.insert(em , colonnes);
-				MarqueDao.insert(em, colonnes);
-//				ProduitDao.insert(em, colonnes);
-				
-		
-//				produit.setCategorie(ca);;
-//				produit.setMarque(marque);
-				
-//				
-//				// INGREDIENT //
-//				String[] ingredients = colonnes[4].split("[,;-]", -1);
-//
-//				for (String ingredient : ingredients) {
-//
-//					if (ingredient.length() <= 255) {
-//
-//						Ingredients ingred = null;
-//
-//						TypedQuery<Ingredients> query = em.createQuery(
-//								"SELECT ingredient FROM Ingredients ingredient WHERE ingredient.nom = ?1",
-//								Ingredients.class);
-//						query.setParameter(1, ingredient);
-//						List<Ingredients> ingred2 = query.getResultList();
-//
-//						System.out.println(ingredient);
-//						if (ingred2.size() == 0) {
-//							ingred = new Ingredients();
-//							ingred.setNom(ingredient);
-//							em.persist(ingred);
-//						} else {
-//							ingred = ingred2.get(0);
-//						}
-//						
-//						produit.getIngredients().add(ingred);
-//						
-//					}
-//				}
-//
-//				
-//				
-//				transaction.commit();
+				Categories categorie = CategoriesDao.insert(em , colonnes);
+				Marques marque = MarqueDao.insert(em, colonnes);
+				Produits produits = ProduitDao.insert(em, colonnes, categorie, marque);
+				Ingredients ingredient = IngredientDao.insert(em, colonnes, produits);
+				Allergenes allergene = AllergeneDao.insert(em, colonnes, produits);
+				Additifs additif = AdditifDao.insert(em, colonnes, produits);
+
+
 				cpt++;
 			}
 
 		} catch (Exception e) {
-			System.out.println("probleme \n" + e.getMessage());
+			System.err.println("probleme \n" + e.getMessage());
 			e.printStackTrace();
 		}
 

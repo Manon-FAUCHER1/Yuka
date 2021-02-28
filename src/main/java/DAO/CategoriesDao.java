@@ -19,14 +19,12 @@ import Exceptions.ExceptionMessage;
 public class CategoriesDao {
 
 
-	public static void insert(EntityManager em, String[] colonnes) throws ExceptionMessage {
+	public static Categories insert(EntityManager em, String[] colonnes) {
 		EntityTransaction transaction = em.getTransaction();
 		
 		String nomCategorie = colonnes[0];
 		
-		
 		if (nomCategorie.length() <= 255) {
-			
 			
 			Categories categorie = null;
 
@@ -44,13 +42,15 @@ public class CategoriesDao {
 				
 				em.persist(categorie);
 				transaction.commit();
+				
 			} else {
 				categorie = cat.get(0);
 			}		
 			
-		} else {
-			throw new ExceptionMessage("Le nom de la catégorie est trop grande.");
+			return categorie;
 		}
+		return null; 
+		
 		
 		
 	}

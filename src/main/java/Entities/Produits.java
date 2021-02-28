@@ -21,7 +21,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name = "PRODUITS")
+@Table(name = "Produits")
 public class Produits {
 	
 	@Id
@@ -74,6 +74,19 @@ public class Produits {
 	)
 	private List<Ingredients> ingredients = new ArrayList<>();
 	
+	@ManyToMany
+	@JoinTable(name="REL_PRODUITS_ALLERGENES",
+		joinColumns= @JoinColumn(name="ID_PRODUITS", referencedColumnName="Id"),
+		inverseJoinColumns= @JoinColumn(name="ID_ALLERGENES", referencedColumnName="Id")
+	)
+	private List<Allergenes> allergenes = new ArrayList<>();
+	
+	@ManyToMany
+	@JoinTable(name="REL_PRODUITS_ADDITIFS",
+		joinColumns= @JoinColumn(name="ID_PRODUITS", referencedColumnName="Id"),
+		inverseJoinColumns= @JoinColumn(name="ID_ADDITIFS", referencedColumnName="Id")
+	)
+	private List<Additifs> additifs = new ArrayList<>();
 
 	/**
 	 * Construtor
@@ -199,16 +212,38 @@ public class Produits {
 		this.nutritionGradeFr = nutritionGradeFr;
 	}
 
+	public ProduitInfoComplementaire getProduitInfoComplementaire() {
+		return ProduitInfoComplementaire;
+	}
+
+	public void setProduitInfoComplementaire(ProduitInfoComplementaire produitInfoComplementaire) {
+		ProduitInfoComplementaire = produitInfoComplementaire;
+	}
+
+	public List<Allergenes> getAllergenes() {
+		return allergenes;
+	}
+
+	public void setAllergenes(List<Allergenes> allergenes) {
+		this.allergenes = allergenes;
+	}
+
+	public List<Additifs> getAdditifs() {
+		return additifs;
+	}
+
+	public void setAdditifs(List<Additifs> additifs) {
+		this.additifs = additifs;
+	}
+
 	@Override
 	public String toString() {
 		return "Produits [id=" + id + ", nom=" + nom + ", energie100g=" + energie100g + ", graisse100g=" + graisse100g
 				+ ", sucres100g=" + sucres100g + ", fibres100g=" + fibres100g + ", proteines100g=" + proteines100g
-				+ ", sel100g=" + sel100g + ", nutritionGradeFr=" + nutritionGradeFr + ", categorie=" + categorie
-				+ ", marque=" + marque + ", ingredients=" + ingredients + "]";
+				+ ", sel100g=" + sel100g + ", ProduitInfoComplementaire=" + ProduitInfoComplementaire
+				+ ", nutritionGradeFr=" + nutritionGradeFr + ", categorie=" + categorie + ", marque=" + marque
+				+ ", ingredients=" + ingredients + "]";
 	}
 
-
-	
-	
 
 }

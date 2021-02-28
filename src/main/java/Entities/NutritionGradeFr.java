@@ -24,7 +24,17 @@ public enum NutritionGradeFr {
 	
 	@Column(name = "NutritionGradeFr", nullable = false, length = 1)
 	private String nutritionGradeFr;
+	
+	/**
+	 * Constructor
+	 */
+	private NutritionGradeFr() {}
+	
 
+	/**
+	 * Constructor
+	 * @param nutritionGradeFr
+	 */
 	private NutritionGradeFr(String nutritionGradeFr) {
 		this.nutritionGradeFr = nutritionGradeFr;
 	}
@@ -37,10 +47,10 @@ public enum NutritionGradeFr {
 		this.nutritionGradeFr = nutritionGradeFr;
 	}
 	
-	public static boolean contains(String test) {
+	public static boolean contains(String valeur) {
 
 	    for (NutritionGradeFr c : NutritionGradeFr.values()) {
-	        if (c.name().equals(test)) {
+	        if (c.name().equals(valeur)) {
 	            return true;
 	        }
 	    }

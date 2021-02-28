@@ -22,7 +22,7 @@ public class MarqueDao {
 	 * @throws ExceptionMessage 
 	 * 
 	 */
-	public static void insert(EntityManager em, String[] colonnes) throws ExceptionMessage {
+	public static Marques insert(EntityManager em, String[] colonnes) {
 		EntityTransaction transaction = em.getTransaction();
 		
 		String nomMarque = colonnes[1];
@@ -49,9 +49,9 @@ public class MarqueDao {
 				marque = mar.get(0);
 			}
 			
-		} else {
-			throw new ExceptionMessage("Le nom de la marque est trop grande.");
+			return marque;
 		}
+		return null;
 	}
 
 }

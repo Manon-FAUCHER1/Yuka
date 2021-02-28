@@ -6,10 +6,14 @@ package DAO;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import Entities.Categories;
+import Entities.Marques;
 import Entities.NutritionGradeFr;
+import Entities.ProduitInfoComplementaire;
 import Entities.Produits;
 import Exceptions.ExceptionMessage;
 import Utils.DoubleUtils;
+import Utils.VerifUtil;
 
 /**
  * @author manon
@@ -21,26 +25,14 @@ public class ProduitDao {
 	 * @param args
 	 * @throws ExceptionMessage 
 	 */
-	public static void insert(EntityManager em, String[] colonnes) throws ExceptionMessage {
+	public static Produits insert(EntityManager em, String[] colonnes, Categories categorie, Marques marque) throws ExceptionMessage {
 		EntityTransaction transaction = em.getTransaction();
 		transaction.begin();
 		
 		Produits produit = new Produits();;
 		
-		String nomProduit = colonnes[2];
-		if (nomProduit.length() <= 255) {
-			produit.setNom(nomProduit);
-		} else {
-			throw new ExceptionMessage("Le nom du produit est trop grand.");
-		}
-		
-		String nutritionGrade = colonnes[3];
-		if (NutritionGradeFr.contains(nutritionGrade)) {
-			NutritionGradeFr nutritionGradeFr = NutritionGradeFr.valueOf(nutritionGrade);
-			produit.setNutritionGradeFr(nutritionGradeFr);
-		}else {
-			throw new ExceptionMessage("Le score nutritionnel renseigner n'est pas valide.");
-		}
+		String nomProduit = VerifUtil.verifString(colonnes[2]);
+		produit.setNom(nomProduit);
 
 		Double energie100g = DoubleUtils.parse(colonnes[5]);	
 		produit.setEnergie100g(energie100g);
@@ -60,28 +52,60 @@ public class ProduitDao {
 		Double sel100g = DoubleUtils.parse(colonnes[10]);		 
 		produit.setSel100g(sel100g);
 		
-		String vitA100g =  colonnes[11];
-		String vitD100g = colonnes[12];
-		String vitE100g = colonnes[13];
-		String vitK100g = colonnes[14];
-		String vitC100g = colonnes[15];
-		String vitB1100g = colonnes[16];
-		String vitB2100g = colonnes[17];
-		String vitPP100g = colonnes[18];
-		String vitB6100g = colonnes[19];
-		String vitB9100g = colonnes[20];
-		String vitB12100g = colonnes[21];
-		String calcium100g = colonnes[22];
-		String magnesium100g = colonnes[23];
-		String iron100g = colonnes[24];
-		String fer100g = colonnes[25];
-		String betaCarotene100g = colonnes[26];
-		String presenceHuilePalme = colonnes[27];
+		
+		String nutritionGrade = colonnes[3];
+		if (NutritionGradeFr.contains(nutritionGrade)) {
+			NutritionGradeFr nutritionGradeFr = NutritionGradeFr.valueOf(nutritionGrade);
+			produit.setNutritionGradeFr(nutritionGradeFr);
+		}
+		
+		
+		ProduitInfoComplementaire produitInfoComplementaire = new ProduitInfoComplementaire();
+		
+		String vitA100g = VerifUtil.verifString(colonnes[11]);
+		produitInfoComplementaire.setVitA100g(vitA100g);
+		String vitD100g = VerifUtil.verifString(colonnes[12]);
+		produitInfoComplementaire.setVitD100g(vitD100g);
+		String vitE100g = VerifUtil.verifString(colonnes[13]);
+		produitInfoComplementaire.setVitE100g(vitE100g);
+		String vitK100g = VerifUtil.verifString(colonnes[14]);
+		produitInfoComplementaire.setVitK100g(vitK100g);
+		String vitC100g = VerifUtil.verifString(colonnes[15]);
+		produitInfoComplementaire.setVitC100g(vitC100g);
+		String vitB1100g = VerifUtil.verifString(colonnes[16]);
+		produitInfoComplementaire.setVitB1100g(vitB1100g);
+		String vitB2100g = VerifUtil.verifString(colonnes[17]);
+		produitInfoComplementaire.setVitB2100g(vitB2100g);
+		String vitPP100g = VerifUtil.verifString(colonnes[18]);
+		produitInfoComplementaire.setVitPP100g(vitPP100g);
+		String vitB6100g = VerifUtil.verifString(colonnes[19]);
+		produitInfoComplementaire.setVitB6100g(vitB6100g);
+		String vitB9100g = VerifUtil.verifString(colonnes[20]);
+		produitInfoComplementaire.setVitB9100g(vitB9100g);
+		String vitB12100g = VerifUtil.verifString(colonnes[21]);
+		produitInfoComplementaire.setVitB12100g(vitB12100g);
+		String calcium100g = VerifUtil.verifString(colonnes[22]);
+		produitInfoComplementaire.setCalcium100g(calcium100g);
+		String magnesium100g = VerifUtil.verifString(colonnes[23]);
+		produitInfoComplementaire.setMagnesium100g(magnesium100g);
+		String iron100g = VerifUtil.verifString(colonnes[24]);
+		produitInfoComplementaire.setIron100g(iron100g);
+		String fer100g = VerifUtil.verifString(colonnes[25]);
+		produitInfoComplementaire.setFer100g(fer100g);
+		String betaCarotene100g = VerifUtil.verifString(colonnes[26]);
+		produitInfoComplementaire.setBetaCarotene100g(betaCarotene100g);
+		String presenceHuilePalme = VerifUtil.verifString(colonnes[27]);
+		produitInfoComplementaire.setPresenceHuilePalme(presenceHuilePalme);
+		
+		produit.setProduitInfoComplementaire(produitInfoComplementaire);
+		
+		produit.setCategorie(categorie);
+		produit.setMarque(marque);
 		
 		em.persist(produit);
 		transaction.commit();
 		
-
+		return produit;
 	}
 
 }

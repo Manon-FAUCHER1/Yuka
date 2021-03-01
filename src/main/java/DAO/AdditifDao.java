@@ -27,8 +27,6 @@ public class AdditifDao {
 	 */
 	public static void insert(EntityManager em, String[] colonnes, Produits produits) {
 
-		EntityTransaction transaction = em.getTransaction();
-
 		String[] additifs = VerifUtil.verifString(colonnes[29]).split("[,]", -1);
 
 		for (String additif : additifs) {
@@ -43,12 +41,10 @@ public class AdditifDao {
 				List<Additifs> addit2 = query.getResultList();
 
 				if (addit2.size() == 0) {
-					transaction.begin();
 
 					addit = new Additifs();
 					addit.setNom(additif);
 					em.persist(addit);
-					transaction.commit();
 				} else {
 					addit = addit2.get(0);
 				}

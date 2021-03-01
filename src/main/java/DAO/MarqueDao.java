@@ -11,6 +11,7 @@ import javax.persistence.TypedQuery;
 
 import Entities.Marques;
 import Exceptions.ExceptionMessage;
+import Utils.VerifUtil;
 
 /**
  * @author manon
@@ -23,9 +24,8 @@ public class MarqueDao {
 	 * 
 	 */
 	public static Marques insert(EntityManager em, String[] colonnes) {
-		EntityTransaction transaction = em.getTransaction();
 		
-		String nomMarque = colonnes[1];
+		String nomMarque = VerifUtil.verifString(colonnes[1]);
 
 		if (nomMarque.length() <= 255 ) {
 			
@@ -38,20 +38,20 @@ public class MarqueDao {
 			List<Marques> mar = query.getResultList();
 			
 			if (mar.size() == 0) {
-				transaction.begin();
 				
 				marque = new Marques();
 				marque.setNom(nomMarque);
 				
 				em.persist(marque);
-				transaction.commit();
 			}else {
 				marque = mar.get(0);
 			}
 			
 			return marque;
+		} else {
+			return null;
 		}
-		return null;
+		
 	}
 
 }

@@ -96,7 +96,7 @@ public class Produits {
 	public Produits() {}
 
 	///////// GETTERS & SETTERS /////////////
-	
+
 	public Integer getId() {
 		return id;
 	}

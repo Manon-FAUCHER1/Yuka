@@ -20,7 +20,7 @@ public class CategoriesDao {
 
 
 	public static Categories insert(EntityManager em, String[] colonnes) {
-		EntityTransaction transaction = em.getTransaction();
+		
 		
 		String nomCategorie = colonnes[0];
 		
@@ -35,21 +35,21 @@ public class CategoriesDao {
 			List<Categories> cat = query.getResultList();
 
 			if (cat.size() == 0) {
-				transaction.begin();
 				
 				categorie = new Categories();
 				categorie.setNom(nomCategorie);
 				
 				em.persist(categorie);
-				transaction.commit();
 				
 			} else {
 				categorie = cat.get(0);
 			}		
 			
 			return categorie;
+		} else {
+			return null; 
 		}
-		return null; 
+		
 		
 		
 		

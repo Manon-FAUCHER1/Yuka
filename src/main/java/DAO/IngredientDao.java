@@ -24,7 +24,6 @@ public class IngredientDao {
 	 */
 	public static void insert(EntityManager em, String[] colonnes, Produits produit) {
 
-		EntityTransaction transaction = em.getTransaction();
 
 		String[] ingredients = colonnes[4].split("[,;-]", -1);
 
@@ -53,12 +52,10 @@ public class IngredientDao {
 					List<Ingredients> ingred2 = query.getResultList();
 
 					if (ingred2.size() == 0) {
-						transaction.begin();
 
 						ingred = new Ingredients();
 						ingred.setNom(ingredient);
 						em.persist(ingred);
-						transaction.commit();
 					} else {
 						ingred = ingred2.get(0);
 					}

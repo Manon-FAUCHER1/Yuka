@@ -25,6 +25,7 @@ import Entities.Categories;
 import Entities.Ingredients;
 import Entities.Marques;
 import Entities.Produits;
+import Exceptions.ExceptionMessage;
 
 /**
  * @author manon
@@ -34,8 +35,9 @@ public class IntegrationOpenFoodFacts {
 
 	/**
 	 * @param args
+	 * @throws ExceptionMessage 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ExceptionMessage {
 
 		try {
 
@@ -57,7 +59,9 @@ public class IntegrationOpenFoodFacts {
 			int cpt = 1;
 
 			for (String ligne : lignes) {
-
+				EntityTransaction transaction = em.getTransaction();
+				transaction.begin();
+				
 				System.out.println(cpt);
 
 				/////////// SEPARATION DES COLONNES ///////////
@@ -69,13 +73,14 @@ public class IntegrationOpenFoodFacts {
 				IngredientDao.insert(em, colonnes, produits);
 				AllergeneDao.insert(em, colonnes, produits);
 				AdditifDao.insert(em, colonnes, produits);
+				
+				transaction.commit();
 
 				cpt++;
 			}
 
 		} catch (Exception e) {
-			System.err.println("probleme \n" + e.getMessage());
-			e.printStackTrace();
+			throw new ExceptionMessage("probleme \n" + e.getMessage());
 		}
 
 	}

@@ -28,8 +28,6 @@ public class AllergeneDao {
 	 */
 	public static void insert(EntityManager em, String[] colonnes, Produits produits) {
 
-		EntityTransaction transaction = em.getTransaction();
-
 		String[] allergenes = VerifUtil.verifString(colonnes[28]).split("[,]", -1);
 
 		for (String allergene : allergenes) {
@@ -51,12 +49,11 @@ public class AllergeneDao {
 				List<Allergenes> allerg2 = query.getResultList();
 
 				if (allerg2.size() == 0) {
-					transaction.begin();
 
 					allerg = new Allergenes();
 					allerg.setNom(allergene);
 					em.persist(allerg);
-					transaction.commit();
+			
 				} else {
 					allerg = allerg2.get(0);
 				}

@@ -26,7 +26,7 @@ public class AllergeneDao {
 	 * @param produits
 	 * @return
 	 */
-	public static Allergenes insert(EntityManager em, String[] colonnes, Produits produits) {
+	public static void insert(EntityManager em, String[] colonnes, Produits produits) {
 
 		EntityTransaction transaction = em.getTransaction();
 
@@ -38,6 +38,7 @@ public class AllergeneDao {
 
 				// TRANSFORMATION DE L'ALLERGENE :
 				allergene = allergene.toLowerCase().replace(":", " : ");
+
 				char[] char_allergene = allergene.toCharArray();
 				char_allergene[0] = Character.toUpperCase(char_allergene[0]);
 				allergene = new String(char_allergene);
@@ -62,11 +63,10 @@ public class AllergeneDao {
 
 				produits.getAllergenes().add(allerg);
 
-				return allerg;
 			}
 
 		}
-		return null;
+
 	}
 
 }

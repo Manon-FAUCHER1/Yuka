@@ -25,7 +25,7 @@ public class AdditifDao {
 	 * @param produits
 	 * @return
 	 */
-	public static Additifs insert(EntityManager em, String[] colonnes, Produits produits) {
+	public static void insert(EntityManager em, String[] colonnes, Produits produits) {
 
 		EntityTransaction transaction = em.getTransaction();
 
@@ -55,11 +55,11 @@ public class AdditifDao {
 
 				produits.getAdditifs().add(addit);
 
-				return addit;
+		
 			}
 
 		}
-		return null;
+		
 	}
 
 }

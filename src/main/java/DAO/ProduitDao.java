@@ -52,11 +52,11 @@ public class ProduitDao {
 		produit.setSel100g(sel100g);
 		
 		
-//		String nutritionGrade = colonnes[3];
-//		if (NutritionGradeFr.contains(nutritionGrade)) {
-//			NutritionGradeFr nutritionGradeFr = NutritionGradeFr.valueOf(nutritionGrade);
-//			produit.setNutritionGradeFr(nutritionGradeFr);
-//		}
+		String nutritionGrade = colonnes[3];
+		if (NutritionGradeFr.contains(nutritionGrade)) {
+			NutritionGradeFr nutritionGradeFr = NutritionGradeFr.valueOf(nutritionGrade);
+			produit.setNutritionGradeFr(nutritionGradeFr);
+		}
 		
 		
 		ProduitInfoComplementaire produitInfoComplementaire = new ProduitInfoComplementaire();

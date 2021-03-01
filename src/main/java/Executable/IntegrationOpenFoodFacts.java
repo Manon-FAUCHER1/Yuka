@@ -66,9 +66,9 @@ public class IntegrationOpenFoodFacts {
 				Categories categorie = CategoriesDao.insert(em, colonnes);
 				Marques marque = MarqueDao.insert(em, colonnes);
 				Produits produits = ProduitDao.insert(em, colonnes, categorie, marque);
-//				Ingredients ingredient = IngredientDao.insert(em, colonnes, produits);
-				Allergenes allergene = AllergeneDao.insert(em, colonnes, produits);
-				Additifs additif = AdditifDao.insert(em, colonnes, produits);
+				IngredientDao.insert(em, colonnes, produits);
+				AllergeneDao.insert(em, colonnes, produits);
+				AdditifDao.insert(em, colonnes, produits);
 
 				cpt++;
 			}

@@ -12,7 +12,6 @@ import javax.persistence.Embeddable;
  * @author manon
  *
  */
-//@Embeddable
 public enum NutritionGradeFr {
 	
 	a("a"),
@@ -22,7 +21,6 @@ public enum NutritionGradeFr {
 	e("e"),
 	f("f");
 	
-	@Column(name = "NutritionGradeFr", nullable = false, length = 1)
 	private String nutritionGradeFr;
 	
 	/**

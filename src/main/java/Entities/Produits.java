@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -53,8 +55,8 @@ public class Produits {
 	@Embedded
 	private ProduitInfoComplementaire ProduitInfoComplementaire;
 	
-//	@Embedded
-//	private NutritionGradeFr nutritionGradeFr;
+	@Enumerated(EnumType.STRING)
+	private NutritionGradeFr nutritionGradeFr;
 
 	
 	///////// RELATION /////////////
@@ -204,13 +206,13 @@ public class Produits {
 		this.ingredients = ingredients;
 	}
 
-//	public NutritionGradeFr getNutritionGradeFr() {
-//		return nutritionGradeFr;
-//	}
-//
-//	public void setNutritionGradeFr(NutritionGradeFr nutritionGradeFr) {
-//		this.nutritionGradeFr = nutritionGradeFr;
-//	}
+	public NutritionGradeFr getNutritionGradeFr() {
+		return nutritionGradeFr;
+	}
+
+	public void setNutritionGradeFr(NutritionGradeFr nutritionGradeFr) {
+		this.nutritionGradeFr = nutritionGradeFr;
+	}
 
 	public ProduitInfoComplementaire getProduitInfoComplementaire() {
 		return ProduitInfoComplementaire;
@@ -241,7 +243,7 @@ public class Produits {
 		return "Produits [id=" + id + ", nom=" + nom + ", energie100g=" + energie100g + ", graisse100g=" + graisse100g
 				+ ", sucres100g=" + sucres100g + ", fibres100g=" + fibres100g + ", proteines100g=" + proteines100g
 				+ ", sel100g=" + sel100g + ", ProduitInfoComplementaire=" + ProduitInfoComplementaire
-				+ ", nutritionGradeFr=" // + nutritionGradeFr + ", categorie=" + categorie + ", marque=" + marque
+				+ ", nutritionGradeFr=" + nutritionGradeFr + ", categorie=" + categorie + ", marque=" + marque
 				+ ", ingredients=" + ingredients + "]";
 	}
 

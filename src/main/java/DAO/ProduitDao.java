@@ -35,7 +35,7 @@ public class ProduitDao {
 	 */
 	public static Produits insert(EntityManager em, String[] colonnes, Categories categorie, Marques marque) throws ExceptionMessage {
 		
-		Produits produit = new Produits();;
+		Produits produit = new Produits();
 		
 		String nomProduit = VerifUtil.verifString(colonnes[2]);
 		

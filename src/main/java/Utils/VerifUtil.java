@@ -11,10 +11,7 @@ import Exceptions.ExceptionMessage;
  */
 public class VerifUtil {
 
-	/**
-	 * @param args
-	 * @throws ExceptionMessage 
-	 */
+
 	public static String verifString(String valeur) {
 		
 		if (valeur.isEmpty()) {
@@ -22,7 +19,6 @@ public class VerifUtil {
 		} else {
 			return valeur;
 		}
-		
 
 	}
 	
